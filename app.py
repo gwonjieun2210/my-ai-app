@@ -32,11 +32,16 @@ if prompt := st.chat_input("지은아, 궁금한 게 뭐야?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # AI 대답 (왼쪽)
-    try:
-        with st.chat_message("assistant"):
-            response = model.generate_content(prompt)
-            st.markdown(response.text)
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
-    except Exception as e:
-        st.error(f"지은아 미안해, 잠시 문제가 생겼어: {e}")
+    # AI 대답 (왼쪽) - 한 글자씩 바로 보여주는 '스트리밍' 방식이야!
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty() # 대답이 들어갈 빈 칸을 먼저 만들어
+        full_response = ""
+        
+        # stream=True를 넣으면 로봇이 대답을 조금씩 나눠서 보내줘!
+        for response in model.generate_content(prompt, stream=True):
+            full_response += response.text
+            message_placeholder.markdown(full_response + "▌") # 타자 치는 느낌!
+        
+        message_placeholder.markdown(full_response) # 마지막에 커서 지우기
+    
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
