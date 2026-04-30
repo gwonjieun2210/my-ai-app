@@ -7,7 +7,7 @@ genai.configure(api_key="AIzaSyBHPDNvnmErSBU6TxsBSueKeKZnOZx0Wxw")
 model = genai.GenerativeModel('gemini-3.1-flash-lite-preview')
 
 # 2. 앱 화면 꾸미기
-st.set_page_config(page_title="지은 AI", page_icon="📱")
+st.set_page_config(page_title="지은이의 비밀 챗봇", page_icon="📱")
 st.title("✨ 지은이의 비밀 챗봇")
 
 # 3. 대화 저장용 메모리 만들기
