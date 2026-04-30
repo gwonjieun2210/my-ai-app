@@ -3,7 +3,7 @@ import google.generativeai as genai
 from PIL import Image
 
 # 1. API 설정 (지은이 키로 꼭 바꿔줘!)
-genai.configure(api_key="AIzaSyBHPDNvnmErSBU6TxsBSueKeKZnOZx0Wxw")
+genai.configure(api_key="AIzaSyDuaCHzYuMedegd_89lXZD3O0U69o12Df0")
 model = genai.GenerativeModel('gemini-3.1-flash-lite-preview')
 
 # 2. 앱 화면 꾸미기
